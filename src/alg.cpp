@@ -26,6 +26,9 @@ public:
       case '(':
         return 0;
         break;
+      default:
+        return -1;
+        break;
     }
   }
 };
@@ -43,6 +46,9 @@ int SwitchOperator(int f, int s, char op) {
       break;
     case'/':
       return f/s;
+      break;
+    default:
+      return 0;
       break;
   }
 }
