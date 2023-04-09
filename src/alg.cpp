@@ -52,6 +52,17 @@ int SwitchOperator(int f, int s, char op) {
       break;
   }
 }
+int Reverse(std::string val) {
+    int ival;
+    std::string temp=val;
+    for(int i=0; i<val.length();++i){
+        int count = val.length() - 1 - i;
+        temp[i] = val[count];
+    }
+    val = temp;
+   ival = std::stoi(val);
+    return ival;
+}
 std::string infx2pstfx(std::string inf) {
   const int size = inf.length();
   TStack<char, 100> stack1;
