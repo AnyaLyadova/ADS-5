@@ -101,7 +101,12 @@ std::string infx2pstfx(std::string inf) {
 }
 
 int eval(std::string pref) {
-   for (int i = 0; i < pref.length(); ++i) {
+    int res = 0;
+    std::string sres;
+    char str;
+    int in;
+    TStack<char, 100> stack1;
+    for (int i = 0; i < pref.length(); ++i) {
         str = pref.c_str()[i];
         int f = 0;
         int s = 0;
