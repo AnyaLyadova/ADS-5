@@ -101,24 +101,60 @@ std::string infx2pstfx(std::string inf) {
 }
 
 int eval(std::string pref) {
-  int res = 0;
-  char str;
-  int in, f, s;
-  TStack<int, 100> stack1;
-  for (int i = 0; i < pref.length(); ++i) {
-    str = pref.c_str()[i];
-    in = str - '0';
-    if (0 <= in && in <= 9) {
-      stack1.Push(in);
-    } else {
-        char ch = str;
-        s= stack1.Pop();
-        f= stack1.Pop();
-        int result = SwitchOperator(f, s, ch);
-        stack1.Push(result);
-      }
+   for (int i = 0; i < pref.length(); ++i) {
+        str = pref.c_str()[i];
+        int f = 0;
+        int s = 0;
+        char ch = '+';
+        if ('0' <= str && str <= '9') {
+            if ('0' <= pref[i + 1] && pref[i + 1] <= '9') {
+                stack1.Push(str);
+                continue;
+            }
+            else {
+                stack1.Push(str);
+                stack1.Push(' ');
+                continue;
+            }
+        }
+            else {
+            if (str == ' ') {
+                continue;
+            }
+            else
+            {
+                
+                char ch = str;
+                std::string sf, ss;
+                if (stack1.WatchTop() == ' ') {
+                    stack1.Pop();
+                }
+                while(stack1.WatchTop() != ' ' && (!stack1.isEmpty()))
+                {
+                    ss += stack1.Pop();
+                }
+                if (stack1.WatchTop() == ' ') {
+                    stack1.Pop();
+                }
+                while (stack1.WatchTop() != ' ' && (!stack1.isEmpty()))
+                {
+                    sf += stack1.Pop();
+                }
+                int s = Reverse(ss);
+                int f = Reverse(sf);
+                int result = SwitchOperator(f, s, ch);
+                std::string sresult= std::to_string(result);
+                for(int j=0;j<sresult.length();++j)
+                {
+                    stack1.Push(sresult[j]);
+                }
+                stack1.Push(' ');
+            }
+            }
     }
-  res = stack1.Pop();
-  return res;
-  return 0;
+    while (!(stack1.isEmpty())) {
+        sres += stack1.Pop();
+    }
+    res = Reverse(sres);
+    return res;
 }
