@@ -77,15 +77,19 @@ std::string infx2pstfx(std::string inf) {
         continue;
       } else {
           outstr += ch;
+          outstr += " ";
           continue;
         }
     } else {
         Operator op(ch);
         Operator top(stack1.WatchTop());
+        curprior = top.prioriti;
         if (op.prioriti == 1) {
           while (top.GivePrioriri() != 0) {
             outstr += stack1.Pop();
+            outstr += " ";
             top.oper = stack1.WatchTop();
+            top.GivePrioriri();
           }
           stack1.IncTop();
           curprior = op.prioriti;
@@ -97,7 +101,9 @@ std::string infx2pstfx(std::string inf) {
           } else if (op.prioriti <= curprior) {
               while (top.GivePrioriri() >= op.prioriti) {
                 outstr += stack1.Pop();
+                outstr += " ";
                 top.oper = stack1.WatchTop();
+                top.GivePrioriri();
               }
               stack1.Push(ch);
               curprior = op.prioriti;
@@ -107,7 +113,9 @@ std::string infx2pstfx(std::string inf) {
    }
   while (!(stack1.isEmpty())) {
     outstr += stack1.Pop();
+    outstr += " ";
   }
+  outstr.pop_back();
   return outstr;
 }
 
