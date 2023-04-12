@@ -7,7 +7,7 @@ public:
   Operator(char op) {
     this->oper = op;
     this->prioriti = GivePrioriri();
-  };
+  }; 
   int prioriti;
   char oper;
   int GivePrioriri() {
