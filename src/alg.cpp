@@ -112,11 +112,11 @@ for (int i = 0; i < inf.length(); ++i) {
              continue;
          }
      }
- }
+}
 while (!(stack1.isEmpty())) {
     outstr += stack1.Pop();
     outstr += " ";
- }
+}
 outstr.pop_back();
 return outstr;
 }
@@ -144,31 +144,26 @@ int eval(std::string pref) {
         } else {
             if (str == ' ') {
                 continue;
-            } else
-            {
-                
+            } else {
                 char ch = str;
                 std::string sf, ss;
                 if (stack1.WatchTop() == ' ') {
                     stack1.Pop();
                 }
-                while(stack1.WatchTop() != ' ' && (!stack1.isEmpty()))
-                {
+                while (stack1.WatchTop() != ' ' && (!stack1.isEmpty())) {
                     ss += stack1.Pop();
                 }
                 if (stack1.WatchTop() == ' ') {
                     stack1.Pop();
                 }
-                while (stack1.WatchTop() != ' ' && (!stack1.isEmpty()))
-                {
+                while (stack1.WatchTop() != ' ' && (!stack1.isEmpty())) {
                     sf += stack1.Pop();
                 }
                 int s = Reverse(ss);
                 int f = Reverse(sf);
                 int result = SwitchOperator(f, s, ch);
                 std::string sresult = std::to_string(result);
-                for (int j = 0;j < sresult.length(); ++j)
-                {
+                for (int j = 0;j < sresult.length(); ++j) {
                     stack1.Push(sresult[j]);
                 }
                 stack1.Push(' ');
