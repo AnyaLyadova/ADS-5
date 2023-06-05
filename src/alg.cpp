@@ -64,7 +64,7 @@ int Reverse(std::string val) {
     return ival;
 }
 std::string infx2pstfx(std::string inf) {
- std::string outstr;
+std::string outstr;
 const int size = inf.length();
 TStack<char, 100> stack1;
 char ch;
@@ -96,7 +96,7 @@ for (int i = 0; i < inf.length(); ++i) {
              top.GivePrioriri();
              curprior = top.prioriti;
              continue;
-         } else if (op.prioriti == 0 || 
+         } else if (op.prioriti == 0 ||
                     op.prioriti > curprior || stack1.isEmpty()) {
              stack1.Push(ch);
              curprior = op.prioriti;
