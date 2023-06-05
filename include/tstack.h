@@ -2,11 +2,10 @@
 #ifndef INCLUDE_TSTACK_H_
 #define INCLUDE_TSTACK_H_
 
-template<typename T, int size>
+template<typename T, const int size>
 class TStack {
   T arr[size];
   int top;
-  
  public:
   TStack() :top(-1) {}
   ~TStack() {}
