@@ -3,11 +3,11 @@
 #include <map>
 #include "tstack.h"
 class Operator {
-public:
-  Operator(char op) {
+ public:
+  explicit Operator(char op) {
     this->oper = op;
     this->prioriti = GivePrioriri();
-  }; 
+  }
   int prioriti;
   char oper;
   int GivePrioriri() {
@@ -54,35 +54,33 @@ int SwitchOperator(int f, int s, char op) {
 }
 int Reverse(std::string val) {
     int ival;
-    std::string temp=val;
-    for(int i=0; i<val.length();++i){
+    std::string temp = val;
+    for (int i = 0; i < val.length(); ++i) {
         int count = val.length() - 1 - i;
         temp[i] = val[count];
     }
     val = temp;
-   ival = std::stoi(val);
+    ival = std::stoi(val);
     return ival;
 }
 std::string infx2pstfx(std::string inf) {
 const int size = inf.length();
- TStack<char, 100> stack1;
- std::string outstr;
- char ch;
- int curprior = -1;
- for (int i = 0; i < inf.length(); ++i) {
-     ch=inf[i];
-    if ('0' <= ch && ch <= '9') {
-        if ('0' <= inf[i + 1] && inf[i + 1] <= '9') {
-            outstr += ch;
-            continue;
-        }
-        else {
+TStack<char, 100> stack1;
+std::string outstr;
+char ch;
+int curprior = -1;
+for (int i = 0; i < inf.length(); ++i) {
+  ch = inf[i];
+  if ('0' <= ch && ch <= '9') {
+    if ('0' <= inf[i + 1] && inf[i + 1] <= '9') {
+      outstr += ch;
+      continue;
+    } else {
             outstr += ch;
             outstr += " ";
             continue;
         }
-     }
-     else {
+     } else {
          Operator op(ch);
          Operator top(stack1.WatchTop());
          curprior = top.prioriti;
@@ -98,13 +96,11 @@ const int size = inf.length();
              top.GivePrioriri();
              curprior = top.prioriti;
              continue;
-         }
-         else if (op.prioriti == 0 || op.prioriti > curprior || stack1.isEmpty()) {
+         } else if (op.prioriti == 0 || op.prioriti > curprior || stack1.isEmpty()) {
              stack1.Push(ch);
              curprior = op.prioriti;
              continue;
-         }
-         else if (op.prioriti <= curprior) {
+         } else if (op.prioriti <= curprior) {
              while (top.GivePrioriri() >= op.prioriti) {
                  outstr += stack1.Pop();
                  outstr += " ";
@@ -117,12 +113,12 @@ const int size = inf.length();
          }
      }
  }
- while (!(stack1.isEmpty())) {
-     outstr += stack1.Pop();
-     outstr += " ";
+while (!(stack1.isEmpty())) {
+    outstr += stack1.Pop();
+    outstr += " ";
  }
- outstr.pop_back();
-    return outstr;
+outstr.pop_back();
+return outstr;
 }
 
 int eval(std::string pref) {
@@ -140,18 +136,15 @@ int eval(std::string pref) {
             if ('0' <= pref[i + 1] && pref[i + 1] <= '9') {
                 stack1.Push(str);
                 continue;
-            }
-            else {
+            } else {
                 stack1.Push(str);
                 stack1.Push(' ');
                 continue;
             }
-        }
-            else {
+        } else {
             if (str == ' ') {
                 continue;
-            }
-            else
+            } else
             {
                 
                 char ch = str;
@@ -173,8 +166,8 @@ int eval(std::string pref) {
                 int s = Reverse(ss);
                 int f = Reverse(sf);
                 int result = SwitchOperator(f, s, ch);
-                std::string sresult= std::to_string(result);
-                for(int j=0;j<sresult.length();++j)
+                std::string sresult = std::to_string(result);
+                for (int j = 0;j < sresult.length(); ++j)
                 {
                     stack1.Push(sresult[j]);
                 }
