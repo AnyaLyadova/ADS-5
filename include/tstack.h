@@ -6,9 +6,9 @@ template<typename T, int size>
 class TStack {
   T arr[size];
   int top;
-public:
-  TStack() :top(-1) {};
-  ~TStack() {};
+ public:
+  TStack() :top(-1) {}
+  ~TStack() {}
   void Push(const T& value) {
     arr[++top] = value;
   }
