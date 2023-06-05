@@ -163,7 +163,7 @@ int eval(std::string pref) {
                 int f = Reverse(sf);
                 int result = SwitchOperator(f, s, ch);
                 std::string sresult = std::to_string(result);
-                for (int j = 0;j < sresult.length(); ++j) {
+                for (int j = 0; j < sresult.length(); ++j) {
                     stack1.Push(sresult[j]);
                 }
                 stack1.Push(' ');
