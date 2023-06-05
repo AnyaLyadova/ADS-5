@@ -64,21 +64,21 @@ int Reverse(std::string val) {
     return ival;
 }
 std::string infx2pstfx(std::string inf) {
-std::string outstr;
-const int size = inf.length();
-TStack<char, 100> stack1;
-char ch;
-int curprior = -1;
-for (int i = 0; i < inf.length(); ++i) {
-  ch = inf[i];
-  if ('0' <= ch && ch <= '9') {
-    if ('0' <= inf[i + 1] && inf[i + 1] <= '9') {
-      outstr += ch;
-      continue;
-    } else {
-            outstr += ch;
-            outstr += " ";
-            continue;
+  std::string outstr;
+  const int size = inf.length();
+  TStack<char, 100> stack1;
+  char ch;
+  int curprior = -1;
+  for (int i = 0; i < inf.length(); ++i) {
+    ch = inf[i];
+    if ('0' <= ch && ch <= '9') {
+      if ('0' <= inf[i + 1] && inf[i + 1] <= '9') {
+        outstr += ch;
+        continue;
+      } else {
+              outstr += ch;
+              outstr += " ";
+              continue;
         }
      } else {
          Operator op(ch);
